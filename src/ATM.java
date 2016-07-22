@@ -6,7 +6,7 @@ public class ATM {
     public static void main(String args[]) {
 
         System.out.println("GitHub repository test.");
-
+        System.out.println("Second Git test!");
     }
 
 }
