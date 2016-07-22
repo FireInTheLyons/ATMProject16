@@ -70,19 +70,47 @@ public class Main {
                 System.exit(0);
                 break;
             case 1:
-                // createNewAccount
+                createNewAccount();
                 break;
             case 2:
-                // depositCash
+                depositCash();
                 break;
             case 3:
-                // withdrawCash
+                withdrawCash();
                 break;
             case 4:
-                // displayBalance
+                displayBalance();
                 break;
             default:
                 System.out.println("Unknown error has occured.");
         }
+    }
+
+    private void createNewAccount() {
+        String forename, surname, ppsno, accountType;
+        double initialDeposit;
+        boolean valid = false;
+        while (!valid) {
+            System.out.print("Please enter an account type (either checking or savings) : ");
+            accountType = keyboard.nextLine();
+            if (accountType.equalsIgnoreCase("checking") || accountType.equalsIgnoreCase("savings")) {
+                valid = true;
+            } else {
+                System.out.println("Invalid account type selected.\nIt has to be either 'checking'"
+                        + "or 'savings'. \nPlease choose again.");
+            }
+        }
+    }
+
+    private void depositCash() {
+
+    }
+
+    private void withdrawCash() {
+
+    }
+
+    private void displayBalance() {
+
     }
 }
