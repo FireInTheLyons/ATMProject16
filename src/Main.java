@@ -136,6 +136,7 @@ public class Main {
             account = new savingsAccount(initialDeposit);
         }
         Person person = new Person(forename, surname, ppsno, account);
+        atm.addPerson(person);
     }
 
     private void depositCash() {

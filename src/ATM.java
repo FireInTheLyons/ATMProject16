@@ -1,6 +1,15 @@
 /**
- * Created by t00158576 on 22/07/2016.
+ * Author : John Lyons
  */
+
+import java.util.ArrayList;
+
 public class ATM {
+
+    ArrayList<Person> persons = new ArrayList<Person>();
+
+    void addPerson(Person person) {
+        persons.add(person);
+    }
 
 }
