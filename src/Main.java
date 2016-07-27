@@ -188,7 +188,7 @@ public class Main {
         int account = 0;
         System.out.println("Please enter your selection : ");
         try {
-            account = Integer.parseInt(keyboard.nextLine());
+            account = Integer.parseInt(keyboard.nextLine()) - 1;
         } catch (NumberFormatException e) {
             account = -1; // backwards
         }
