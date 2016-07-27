@@ -82,13 +82,13 @@ public class Main {
                 displayBalance();
                 break;
             default:
-                System.out.println("Unknown error has occured.");
+                System.out.println("Unknown error has occurred.");
         }
     }
 
     private void createNewAccount() {
-        String forename, surname, ppsno, accountType;
-        double initialDeposit;
+        String forename, surname, ppsno, accountType = "";
+        double initialDeposit = 0;
         boolean valid = false;
         while (!valid) {
             System.out.print("Please enter an account type (either checking or savings) : ");
@@ -99,6 +99,41 @@ public class Main {
                 System.out.println("Invalid account type selected.\nIt has to be either 'checking'"
                         + "or 'savings'. \nPlease choose again.");
             }
+        }
+        System.out.println("Please enter your first name: ");
+        forename = keyboard.nextLine();
+        System.out.print("Please enter your last name: ");
+        surname = keyboard.nextLine();
+        System.out.print("Please enter your PPS Number: ");
+        ppsno = keyboard.nextLine();
+        valid = false;
+        while (!valid) {
+            System.out.print("Please enter an initial deposit: ");
+            try {
+                initialDeposit = Double.parseDouble(keyboard.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Deposit must be a number.");
+            }
+            if (accountType.equalsIgnoreCase("checking")) {
+                if (initialDeposit < 200) {
+                    System.out.println("Checking accounts require a minimum of 200 euros to open.");
+                } else {
+                    valid = true;
+                }
+            } else if (accountType.equalsIgnoreCase("savings")) {
+                if (initialDeposit < 100) {
+                    System.out.println("Savings accounts require a minimum of 100 euros to open.");
+                } else {
+                    valid = true;
+                }
+            }
+        }
+        // Now we can create an account.
+        Account account;
+        if (accountType.equalsIgnoreCase("checking")) {
+            account = new checkingAccount(initialDeposit);
+        } else {
+            account = new savingsAccount(initialDeposit);
         }
     }
 
