@@ -135,6 +135,7 @@ public class Main {
         } else {
             account = new savingsAccount(initialDeposit);
         }
+        Person person = new Person(forename, surname, ppsno, account);
     }
 
     private void depositCash() {
