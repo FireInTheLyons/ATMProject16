@@ -17,10 +17,23 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Customer Information\n" +
+        return "\nCustomer Information\n" +
                 "First Name : " + forename +
-                "Last Name : " + surname +
-                "PPS Number : " + ppsno +
+                "\nLast Name : " + surname +
+                "\nPPS Number : " + ppsno + "\n" +
                 account;
     }
+
+    public String personInfo() {
+        return "Customer Information\n" +
+                " First Name : " + forename +
+                " Last Name : " + surname +
+                " PPS Number : " + ppsno +
+                " Account Number : " + account.getAccountNumber();
+    }
+
+    Account getAccount() {
+        return account;
+    }
+
 }

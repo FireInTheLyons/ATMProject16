@@ -12,4 +12,12 @@ public class ATM {
         persons.add(person);
     }
 
+    Person getPerson(int account) {
+        return persons.get(account);
+    }
+
+    ArrayList<Person> getPersons() {
+        return persons;
+    }
+
 }
