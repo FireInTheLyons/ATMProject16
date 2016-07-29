@@ -30,9 +30,9 @@ public class Main {
 
         // this will only print at the very start of the
         // app running, and never again.
-        System.out.println("\n---------------------------------------------------");
-        System.out.println("--------- Welcome to the ATM Application ----------");
-        System.out.println("---------------------------------------------------");
+        System.out.println("\n#################################################");
+        System.out.println(" - - - Welcome to the Java ATM Application - - - ");
+        System.out.println("#################################################");
 
     }
 
@@ -101,7 +101,7 @@ public class Main {
                         + "or 'savings'. \nPlease choose again.");
             }
         }
-        System.out.println("Please enter your first name: ");
+        System.out.print("Please enter your first name: ");
         forename = keyboard.nextLine();
         System.out.print("Please enter your last name: ");
         surname = keyboard.nextLine();
@@ -186,7 +186,8 @@ public class Main {
         int account = selectAccount();
 
         if (account >= 0) {
-            System.out.println(atm.getPerson(account).getAccount());
+            System.out.println(atm.getPerson(account));
+            //System.out.println(atm.getPerson(account).getAccount());
         }
 
     }

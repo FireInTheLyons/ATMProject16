@@ -18,7 +18,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "\nCustomer Information\n" +
+        return "\n - Customer Information - \n" +
                 "First Name : " + forename +
                 "\nLast Name : " + surname +
                 "\nPPS Number : " + ppsno + "\n" +
