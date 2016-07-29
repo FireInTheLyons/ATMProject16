@@ -8,7 +8,7 @@ public class checkingAccount extends Account {
     checkingAccount(double initialDeposit) {
         super();
         this.setBalance(initialDeposit);
-        this.checkInterest();
+        this.checkInterest(0);
         //if(initialDeposit > 10000) {
         //this.setInterest(0.05);
         //} else {

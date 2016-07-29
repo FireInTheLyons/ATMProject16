@@ -38,25 +38,25 @@ public class Account {
             return;
         }
         balance -= amount + 5;
-        checkInterest();
+        checkInterest(0);
         System.out.println("You have withdrawn €" + amount + " and incurred a fee of five euros.");
         System.out.println("You now have a balance of €" + balance);
     }
 
     public void deposit(double amount) {
-        if (amount < 0) {
+        if (amount <= 0) {
             System.out.println("Error. Please specify an amount greater than 0.");
             return;
         }
-        checkInterest();
+        checkInterest(amount);
         amount = amount + amount * interest;
         balance += amount;
         System.out.println("You have deposited €" + amount + " euros with an interest rate of " + (interest * 100) + "%");
         System.out.println("You now have a balance of €" + balance);
     }
 
-    public void checkInterest() {
-        if (balance > 10000) {
+    public void checkInterest(double amount) {
+        if (balance + amount > 10000) {
             interest = 0.05;
         } else {
             interest = 0.02;

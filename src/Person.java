@@ -1,6 +1,7 @@
 /**
- * Created by t00158576 on 22/07/2016.
+ * Author : John Lyons
  */
+
 public class Person {
 
     private final String forename;
