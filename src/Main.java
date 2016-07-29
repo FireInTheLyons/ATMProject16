@@ -168,7 +168,7 @@ public class Main {
         int account = selectAccount();
 
         if (account >= 0) {
-            System.out.println("Enter the amount that you would like to Deposit : ");
+            System.out.println("Enter the amount that you would like to Withdraw : ");
             double amount = 0;
             try {
                 amount = Double.parseDouble(keyboard.nextLine());
@@ -177,7 +177,7 @@ public class Main {
                 amount = 0;
             }
 
-            atm.getPerson(account).getAccount().deposit(amount);
+            atm.getPerson(account).getAccount().withdraw(amount);
         }
     }
 
