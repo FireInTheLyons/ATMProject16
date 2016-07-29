@@ -187,8 +187,6 @@ public class Main {
 
         if (account >= 0) {
             System.out.println(atm.getPerson(account).getAccount());
-        } else {
-            System.out.println(" Error! Please select another account.");
         }
 
     }
