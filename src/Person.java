@@ -25,7 +25,7 @@ public class Person {
     }
 
     public String personInfo() {
-        return "Customer Information\n" +
+        return
                 " First Name : " + forename +
                 " Last Name : " + surname +
                 " PPS Number : " + ppsno +
