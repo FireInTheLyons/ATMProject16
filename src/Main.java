@@ -164,7 +164,21 @@ public class Main {
     }
 
     private void withdrawCash() {
+        //pasted from above.
+        int account = selectAccount();
 
+        if (account >= 0) {
+            System.out.println("Enter the amount that you would like to Deposit : ");
+            double amount = 0;
+            try {
+                amount = Double.parseDouble(keyboard.nextLine());
+            } catch (NumberFormatException e) {
+
+                amount = 0;
+            }
+
+            atm.getPerson(account).getAccount().deposit(amount);
+        }
     }
 
     private void displayBalance() {
@@ -179,6 +193,8 @@ public class Main {
         // The list will be numbered, incrementally.
         // and we'll pick an account based on the number.
         if (persons.size() <= 0) {
+            // ie. nobody has made an account yet.
+
             System.out.println("No accounts are currently present.");
             return -1; // minus one to go backwards.
         }
