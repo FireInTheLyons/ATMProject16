@@ -164,7 +164,7 @@ public class Main {
     }
 
     private void withdrawCash() {
-        //pasted from above.
+
         int account = selectAccount();
 
         if (account >= 0) {
@@ -206,8 +206,13 @@ public class Main {
         try {
             account = Integer.parseInt(keyboard.nextLine()) - 1;
         } catch (NumberFormatException e) {
-            account = -1; // backwards
+            account = -1; // go backwards
         }
+
+        if (account < 0 || account > persons.size()) {
+            account = -1;
+        }
+
         return account;
     }
 }
