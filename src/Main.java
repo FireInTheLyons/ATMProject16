@@ -183,6 +183,14 @@ public class Main {
 
     private void displayBalance() {
 
+        int account = selectAccount();
+
+        if (account >= 0) {
+            System.out.println(atm.getPerson(account).getAccount());
+        } else {
+            System.out.println(" Error! Please select another account.");
+        }
+
     }
 
     private int selectAccount() {
