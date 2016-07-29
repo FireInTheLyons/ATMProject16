@@ -21,11 +21,11 @@ public class Account {
     }
 
     public double getInterest() {
-        return interest;
+        return interest * 100;
     }
 
     public void setInterest(double interest) {
-        this.interest = interest * 100;
+        this.interest = interest;
     }
 
     public int getAccountNumber() {
