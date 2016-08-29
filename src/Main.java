@@ -91,6 +91,7 @@ public class Main {
         String accountType = "";
         boolean valid = false;
         while (!valid) {
+            //accountType = askQuestion("Please enter an account type(checking/savings) : ");
             System.out.print("Please enter an account type (either checking or savings) : ");
             accountType = keyboard.nextLine();
             if (accountType.equalsIgnoreCase("checking") || accountType.equalsIgnoreCase("savings")) {
@@ -106,20 +107,13 @@ public class Main {
     private String askQuestion(String question) {
         String response = "";
         Scanner input = new Scanner(System.in);
-        System.out.println(question);
+        System.out.print(question);
         response = input.nextLine();
         return response;
     }
 
-    private void createNewAccount() {
-
+    private double getDeposit(String accountType) {
         double initialDeposit = 0;
-        String accountType = getAccountType();
-
-        String forename = askQuestion("Please enter your first name: ");
-        String surname = askQuestion("Please enter your last name: ");
-        String ppsno = askQuestion("Please enter your PPS Number: ");
-
         Boolean valid = false;
         while (!valid) {
             System.out.print("Please enter an initial deposit: ");
@@ -142,6 +136,20 @@ public class Main {
                 }
             }
         }
+        return initialDeposit;
+    }
+
+    private void createNewAccount() {
+
+        //double initialDeposit = 0;
+        String accountType = getAccountType();
+
+        String forename = askQuestion("Please enter your first name: ");
+        String surname = askQuestion("Please enter your last name: ");
+        String ppsno = askQuestion("Please enter your PPS Number: ");
+
+        double initialDeposit = getDeposit(accountType);
+
         // Now we can create an account.
         Account account;
         if (accountType.equalsIgnoreCase("checking")) {
@@ -219,7 +227,7 @@ public class Main {
             return -1; // minus one to go backwards.
         }
         for (int i = 0; i < persons.size(); i++) {
-            System.out.println((i + 1) + "# " + persons.get(i).personInfo());
+            System.out.println("#" + (i + 1) + " -" + persons.get(i).personInfo());
         }
         int account = 0;
         System.out.println("Please enter your selection : ");
