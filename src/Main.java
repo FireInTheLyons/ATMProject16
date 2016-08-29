@@ -87,9 +87,8 @@ public class Main {
         }
     }
 
-    private void createNewAccount() {
-        String forename, surname, ppsno, accountType = "";
-        double initialDeposit = 0;
+    private String getAccountType() {
+        String accountType = "";
         boolean valid = false;
         while (!valid) {
             System.out.print("Please enter an account type (either checking or savings) : ");
@@ -101,13 +100,27 @@ public class Main {
                         + "or 'savings'. \nPlease choose again.");
             }
         }
-        System.out.print("Please enter your first name: ");
-        forename = keyboard.nextLine();
-        System.out.print("Please enter your last name: ");
-        surname = keyboard.nextLine();
-        System.out.print("Please enter your PPS Number: ");
-        ppsno = keyboard.nextLine();
-        valid = false;
+        return accountType;
+    }
+
+    private String askQuestion(String question) {
+        String response = "";
+        Scanner input = new Scanner(System.in);
+        System.out.println(question);
+        response = input.nextLine();
+        return response;
+    }
+
+    private void createNewAccount() {
+
+        double initialDeposit = 0;
+        String accountType = getAccountType();
+
+        String forename = askQuestion("Please enter your first name: ");
+        String surname = askQuestion("Please enter your last name: ");
+        String ppsno = askQuestion("Please enter your PPS Number: ");
+
+        Boolean valid = false;
         while (!valid) {
             System.out.print("Please enter an initial deposit: ");
             try {
