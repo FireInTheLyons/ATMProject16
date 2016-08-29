@@ -91,9 +91,9 @@ public class Main {
         String accountType = "";
         boolean valid = false;
         while (!valid) {
-            //accountType = askQuestion("Please enter an account type(checking/savings) : ");
-            System.out.print("Please enter an account type (either checking or savings) : ");
-            accountType = keyboard.nextLine();
+            accountType = askQuestion("Please enter an account type (either checking or savings) : ");
+            //System.out.print("Please enter an account type (either checking or savings) : ");
+            //accountType = keyboard.nextLine();
             if (accountType.equalsIgnoreCase("checking") || accountType.equalsIgnoreCase("savings")) {
                 valid = true;
             } else {
