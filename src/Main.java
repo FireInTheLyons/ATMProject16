@@ -3,6 +3,8 @@
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -87,29 +89,33 @@ public class Main {
         }
     }
 
-    private String getAccountType() {
-        String accountType = "";
-        boolean valid = false;
-        while (!valid) {
-            accountType = askQuestion("Please enter an account type (either checking or savings) : ");
-            //System.out.print("Please enter an account type (either checking or savings) : ");
-            //accountType = keyboard.nextLine();
-            if (accountType.equalsIgnoreCase("checking") || accountType.equalsIgnoreCase("savings")) {
-                valid = true;
-            } else {
-                System.out.println("Invalid account type selected.\nIt has to be either 'checking'"
-                        + "or 'savings'. \nPlease choose again.");
-            }
-        }
-        return accountType;
-    }
-
-    private String askQuestion(String question) {
+    private String askQuestion(String question, List<String> answers) {
         String response = "";
         Scanner input = new Scanner(System.in);
-        System.out.print(question);
-        response = input.nextLine();
+        boolean choices = !((answers == null) || answers.size() == 0);
+        boolean firstRun = true;
+
+        do {
+            if (!firstRun) {
+                System.out.println("Invalid selection. Please try again.");
+            }
+            System.out.print(question);
+            if (choices) {
+                System.out.print("(");
+                for (int i = 0; i < answers.size(); ++i) {
+                    System.out.print(answers.get(i) + "/");
+                }
+                System.out.print(answers.get(answers.size() - 1));
+                System.out.print("): ");
+            }
+            response = input.nextLine();
+            firstRun = false;
+            if (!choices) {
+                break;
+            }
+        } while (!answers.contains(response));
         return response;
+
     }
 
     private double getDeposit(String accountType) {
@@ -141,12 +147,10 @@ public class Main {
 
     private void createNewAccount() {
 
-        //double initialDeposit = 0;
-        String accountType = getAccountType();
-
-        String forename = askQuestion("Please enter your first name: ");
-        String surname = askQuestion("Please enter your last name: ");
-        String ppsno = askQuestion("Please enter your PPS Number: ");
+        String accountType = askQuestion("Please enter an account type : ", Arrays.asList("checking", "savings"));
+        String forename = askQuestion("Please enter your first name: ", null);
+        String surname = askQuestion("Please enter your last name: ", null);
+        String ppsno = askQuestion("Please enter your PPS Number: ", null);
 
         double initialDeposit = getDeposit(accountType);
 
