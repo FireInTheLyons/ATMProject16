@@ -160,7 +160,6 @@ public class Main {
 
     private void createNewAccount() throws InvalidAccountTypeException {
         // This will go through and ask all the questions until
-        // (cont'd) it gets your deposit.
 
         displayHeader("Create an Account");
 
@@ -187,8 +186,6 @@ public class Main {
     }
 
     private double getAmount(String question) {
-        // Takes a question - how much to deposit or withdraw?
-        // (cont'd) and gets the answer and throws it back.
         System.out.println(question);
         double amount = 0;
         try {
@@ -204,7 +201,6 @@ public class Main {
     private void depositCash() {
 
         displayHeader("Deposit Cash");
-        System.out.println("\nPlease choose an account based on the number assigned . . . \n");
         // Note: Need to ask which account they want to deposit into.
         int account = selectAccount();
         // that will return the account that we want
@@ -222,7 +218,6 @@ public class Main {
     private void withdrawCash() {
 
         displayHeader("Withdraw Cash");
-        System.out.println("\nPlease choose an account based on the number assigned . . . \n");
         int account = selectAccount();
 
         if (account >= 0) {
@@ -234,11 +229,7 @@ public class Main {
 
     private void displayBalance() {
 
-        // This will list out your account details depending on
-        //   (cont'd)  which one you select.
-
         displayHeader("All ATM Accounts");
-        System.out.println("\nPlease choose an account based on the number assigned . . . \n");
         int account = selectAccount();
 
         if (account >= 0) {
@@ -250,9 +241,6 @@ public class Main {
     }
 
     private void displayHeader(String message) {
-
-        // Displays the headers of varying size depending on what you select.
-
         System.out.println();
         int width = message.length() + 6; //3 on each side
         StringBuilder sb = new StringBuilder(); // found StringBuilder online
@@ -276,10 +264,11 @@ public class Main {
         if (persons.size() <= 0) {
             // ie. nobody has made an account yet.
 
-            System.out.println("No accounts are currently present.");
+            System.out.println("\nNo accounts are currently present.");
             return -1; // minus one to go backwards.
         }
         for (int i = 0; i < persons.size(); i++) {
+            System.out.println("\nPlease choose an account based on the number assigned . . . \n");
             System.out.println("\t" + "#" + (i + 1) + " -- " + persons.get(i).personInfo());
         }
         int account;
