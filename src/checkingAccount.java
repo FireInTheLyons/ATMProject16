@@ -6,7 +6,7 @@ public class checkingAccount extends Account {
     private static String accountType = "Checking";
 
     checkingAccount(double initialDeposit) {
-        super();
+        //super();
         this.setBalance(initialDeposit);
         this.checkInterest(0);
         //if(initialDeposit > 10000) {

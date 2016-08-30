@@ -15,11 +15,13 @@ public class Main {
     boolean exit;
 
     public static void main(String args[]) {
+        // calls launchMain.
         Main main = new Main();
         main.launchMain();
     }
 
     public void launchMain() {
+        // calls printOpeningMessage and printMainMenu
         printOpeningMessage();
         while (!exit) {
             printMainMenu();
@@ -49,6 +51,8 @@ public class Main {
     }
 
     private int getInput() {
+        // returns an integer value to launchMain
+        // (cont'd) which then calls selectChoice with that choice.
         int choice = -1;
         do {
             System.out.println("\nEnter your choice: ");
@@ -65,6 +69,7 @@ public class Main {
     }
 
     private void selectChoice(int choice) {
+        // This will call one of the actions based on what was selected.
         switch (choice) {
             case 0:
                 // exit
@@ -95,6 +100,7 @@ public class Main {
     }
 
     private String askQuestion(String question, List<String> answers) {
+        // Takes a Question, prints it out and poses it to the user.
         String response = "";
         Scanner input = new Scanner(System.in);
         boolean choices = !((answers == null) || answers.size() == 0);
@@ -124,6 +130,8 @@ public class Main {
     }
 
     private double getDeposit(String accountType) {
+        // This is given an account type and it keeps going
+        // (cont'd) until it gets the one that it needs.
         double initialDeposit = 0;
         Boolean valid = false;
         while (!valid) {
@@ -151,6 +159,9 @@ public class Main {
     }
 
     private void createNewAccount() throws InvalidAccountTypeException {
+        // This will go through and ask all the questions until
+        // (cont'd) it gets your deposit.
+
         displayHeader("Create an Account");
 
         // Get account information
@@ -176,6 +187,8 @@ public class Main {
     }
 
     private double getAmount(String question) {
+        // Takes a question - how much to deposit or withdraw?
+        // (cont'd) and gets the answer and throws it back.
         System.out.println(question);
         double amount = 0;
         try {
@@ -221,6 +234,9 @@ public class Main {
 
     private void displayBalance() {
 
+        // This will list out your account details depending on
+        //   (cont'd)  which one you select.
+
         displayHeader("All ATM Accounts");
         System.out.println("\nPlease choose an account based on the number assigned . . . \n");
         int account = selectAccount();
@@ -234,6 +250,9 @@ public class Main {
     }
 
     private void displayHeader(String message) {
+
+        // Displays the headers of varying size depending on what you select.
+
         System.out.println();
         int width = message.length() + 6; //3 on each side
         StringBuilder sb = new StringBuilder(); // found StringBuilder online
