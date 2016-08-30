@@ -27,10 +27,10 @@ public class Person {
 
     public String personInfo() {
         return
-                " First Name : " + forename +
-                " Last Name : " + surname +
-                " PPS Number : " + ppsno +
-                " Account Number : " + account.getAccountNumber();
+                "Name : " + forename +
+                        " " + surname +
+                        " - " +
+                        "Account Number : " + account.getAccountNumber();
     }
 
     Account getAccount() {

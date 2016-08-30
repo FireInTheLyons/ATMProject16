@@ -32,15 +32,14 @@ public class Main {
 
         // this will only print at the very start of the
         // app running, and never again.
-        System.out.println("\n#################################################");
-        System.out.println(" - - - Welcome to the Java ATM Application - - - ");
-        System.out.println("#################################################");
+        System.out.println("\n#########################################################");
+        System.out.println("#- - - Welcome to the Java Virtual ATM Application - - -#");
+        System.out.println("#########################################################");
 
     }
 
     private void printMainMenu() {
-
-        System.out.println("\nPlease choose one of the following options : ");
+        displayHeader(" Please choose one of the following options :  ");
         System.out.println("\n1) Create a New Account.");
         System.out.println("2) Deposit Cash.");
         System.out.println("3) Withdraw Cash.");
@@ -152,9 +151,10 @@ public class Main {
     }
 
     private void createNewAccount() throws InvalidAccountTypeException {
+        displayHeader("Create an Account");
 
         // Get account information
-        String accountType = askQuestion("Please enter an account type : ", Arrays.asList("checking", "savings"));
+        String accountType = askQuestion("\nPlease enter an account type : ", Arrays.asList("checking", "savings"));
         String forename = askQuestion("Please enter your first name: ", null);
         String surname = askQuestion("Please enter your last name: ", null);
         String ppsno = askQuestion("Please enter your PPS Number: ", null);
@@ -189,12 +189,15 @@ public class Main {
     }
 
     private void depositCash() {
+
+        displayHeader("Deposit Cash");
+        System.out.println("\nPlease choose an account based on the number assigned . . . \n");
         // Note: Need to ask which account they want to deposit into.
         int account = selectAccount();
         // that will return the account that we want
         // to make a deposit to.
         if (account >= 0) {
-            double amount = getAmount("How much would you like to deposit? : ");
+            double amount = getAmount("\nHow much would you like to deposit? : ");
             // BELOW...
             // Step 1: From the atm class it will get a Persons account,
             // Step 2: then get their checking or savings account,
@@ -205,6 +208,8 @@ public class Main {
 
     private void withdrawCash() {
 
+        displayHeader("Withdraw Cash");
+        System.out.println("\nPlease choose an account based on the number assigned . . . \n");
         int account = selectAccount();
 
         if (account >= 0) {
@@ -216,13 +221,30 @@ public class Main {
 
     private void displayBalance() {
 
+        displayHeader("All ATM Accounts");
+        System.out.println("\nPlease choose an account based on the number assigned . . . \n");
         int account = selectAccount();
 
         if (account >= 0) {
+            displayHeader("Account Details");
             System.out.println(atm.getPerson(account));
             //System.out.println(atm.getPerson(account).getAccount());
         }
 
+    }
+
+    private void displayHeader(String message) {
+        System.out.println();
+        int width = message.length() + 6; //3 on each side
+        StringBuilder sb = new StringBuilder(); // found StringBuilder online
+        sb.append("+"); // plus at the start.
+        for (int i = 0; i < width; ++i) {
+            sb.append("-");
+        }
+        sb.append("+"); // plus at the end.
+        System.out.println(sb.toString());
+        System.out.println("|   " + message + "   |");
+        System.out.println(sb.toString());
     }
 
     private int selectAccount() {
@@ -239,10 +261,10 @@ public class Main {
             return -1; // minus one to go backwards.
         }
         for (int i = 0; i < persons.size(); i++) {
-            System.out.println("#" + (i + 1) + " -" + persons.get(i).personInfo());
+            System.out.println("\t" + "#" + (i + 1) + " -- " + persons.get(i).personInfo());
         }
         int account;
-        System.out.println("Please enter your selection : ");
+        System.out.print("\nPlease enter your selection : ");
         try {
             account = Integer.parseInt(keyboard.nextLine()) - 1;
         } catch (NumberFormatException e) {
