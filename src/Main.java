@@ -72,8 +72,14 @@ public class Main {
                 System.out.println("Thank you for using our ATM application! Goodbye!");
                 System.exit(0);
                 break;
-            case 1:
-                createNewAccount();
+            case 1: {
+                try {
+                    createNewAccount();
+                } catch (InvalidAccountTypeException ex) {
+                    System.out.println("Account was not created successfully.");
+                }
+            }
+
                 break;
             case 2:
                 depositCash();
@@ -145,8 +151,9 @@ public class Main {
         return initialDeposit;
     }
 
-    private void createNewAccount() {
+    private void createNewAccount() throws InvalidAccountTypeException {
 
+        // Get account information
         String accountType = askQuestion("Please enter an account type : ", Arrays.asList("checking", "savings"));
         String forename = askQuestion("Please enter your first name: ", null);
         String surname = askQuestion("Please enter your last name: ", null);
@@ -158,11 +165,27 @@ public class Main {
         Account account;
         if (accountType.equalsIgnoreCase("checking")) {
             account = new checkingAccount(initialDeposit);
-        } else {
+        } else if (accountType.equalsIgnoreCase("savings")) {
             account = new savingsAccount(initialDeposit);
+        } else {
+            throw new InvalidAccountTypeException();
+            // this is an exception type that I created.
         }
         Person person = new Person(forename, surname, ppsno, account);
         atm.addPerson(person);
+    }
+
+    private double getAmount(String question) {
+        System.out.println(question);
+        double amount = 0;
+        try {
+            amount = Double.parseDouble(keyboard.nextLine());
+        } catch (NumberFormatException e) {
+            // ie. it would catch a problem if you, for example, entered
+            // a String of letters.
+            amount = 0;
+        }
+        return amount;
     }
 
     private void depositCash() {
@@ -171,15 +194,7 @@ public class Main {
         // that will return the account that we want
         // to make a deposit to.
         if (account >= 0) {
-            System.out.println("Enter the amount that you would like to Deposit : ");
-            double amount = 0;
-            try {
-                amount = Double.parseDouble(keyboard.nextLine());
-            } catch (NumberFormatException e) {
-                // ie. it would catch a problem if you, for example, entered
-                // a String of letters.
-                amount = 0;
-            }
+            double amount = getAmount("How much would you like to deposit? : ");
             // BELOW...
             // Step 1: From the atm class it will get a Persons account,
             // Step 2: then get their checking or savings account,
@@ -193,14 +208,7 @@ public class Main {
         int account = selectAccount();
 
         if (account >= 0) {
-            System.out.println("Enter the amount that you would like to Withdraw : ");
-            double amount = 0;
-            try {
-                amount = Double.parseDouble(keyboard.nextLine());
-            } catch (NumberFormatException e) {
-
-                amount = 0;
-            }
+            double amount = getAmount("How much would you like to withdraw? : ");
 
             atm.getPerson(account).getAccount().withdraw(amount);
         }
@@ -233,7 +241,7 @@ public class Main {
         for (int i = 0; i < persons.size(); i++) {
             System.out.println("#" + (i + 1) + " -" + persons.get(i).personInfo());
         }
-        int account = 0;
+        int account;
         System.out.println("Please enter your selection : ");
         try {
             account = Integer.parseInt(keyboard.nextLine()) - 1;
@@ -242,6 +250,7 @@ public class Main {
         }
 
         if (account < 0 || account > persons.size()) {
+            System.out.println("Invalid account selected.");
             account = -1;
         }
 
