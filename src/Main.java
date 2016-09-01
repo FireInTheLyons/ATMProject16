@@ -266,9 +266,11 @@ public class Main {
 
             System.out.println("\nNo accounts are currently present.");
             return -1; // minus one to go backwards.
-        }
-        for (int i = 0; i < persons.size(); i++) {
+        } else {
             System.out.println("\nPlease choose an account based on the number assigned . . . \n");
+        }
+
+        for (int i = 0; i < persons.size(); i++) {
             System.out.println("\t" + "#" + (i + 1) + " -- " + persons.get(i).personInfo());
         }
         int account;
